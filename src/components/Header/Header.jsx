@@ -86,7 +86,7 @@ const Header = () => {
           {/* Cart with structural absolute alignment */}
           <div className="nav-cart border-hover">
             <div className="cart-icon-wrapper">
-              <span className="cart-count">0</span>
+              <span className="cart-count bg-[#131921]">0</span>
               <BiCart className="icon-cart" />
             </div>
             <span className="text-bold cart-text hide-mobile">Cart</span>
