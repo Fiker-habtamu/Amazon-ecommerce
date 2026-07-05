@@ -2,7 +2,7 @@ import React from 'react';
 import './CategoryCard.css';
 
 const CategoryCard = ({ title, items, linkText, linkUrl }) => {
-  // Check if it's a 4-item grid or a single featured item
+
   const isMultiItem = Array.isArray(items) && items.length === 4;
 
   return (
