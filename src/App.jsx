@@ -1,6 +1,7 @@
 import Header from "./components/Header/Header"
 import './App.css'
 import CarouselEffect from "./components/CarouselEffect/CarouselEffect"
+import CategoryGrid from "./components/CategoryGrid/CategoryGrid"
 
 function App() {
 
@@ -8,6 +9,7 @@ function App() {
     <>
     <Header/>
     <CarouselEffect/>
+    <CategoryGrid/>
     </>
   )
 }
