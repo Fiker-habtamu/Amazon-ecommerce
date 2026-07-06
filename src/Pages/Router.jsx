@@ -5,6 +5,7 @@ import SignUp from './Auth/SignUp'
 import Payment from './Payment/Payment'
 import Orders from './Orders/Orders'
 import Cart from './Cart/Cart'
+import EachCategory from './EachCategory/EachCategory'
 
 function Router() {
   return (
@@ -13,6 +14,7 @@ function Router() {
         <Route path="/auth" element={<SignUp />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/orders" element={<Orders />} />
+        <Route path="/category/:categoryName" element={<EachCategory />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
   );

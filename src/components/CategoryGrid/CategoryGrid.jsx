@@ -8,7 +8,7 @@ const CategoryGrid = () => {
     <div className="category-grid-container">
       { 
 	  categoryImage.map((category,index)=>(
-		<CategoryCard title={category.title}
+		<CategoryCard category={category}
           items={{ image: category.imgLink }}
           linkText="See more"/>
 	  ))
