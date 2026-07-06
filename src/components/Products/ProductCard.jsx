@@ -1,9 +1,9 @@
 import React from "react";
 import Rating from "@mui/material/Rating";
 import "./ProductCard.css";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, flex,renderDesc }) => {
   const { id, title, price, description, category, image, rating } = product;
 
   const handleAddToCart = () => {
@@ -12,7 +12,7 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div className="product-card">
+    <div className={`product-card ${true?"product_fixed":""}`}>
       {/* Product Image Window */}
       <Link to={`/product/${id}`}>
         <div className="product-image-container">
@@ -21,39 +21,41 @@ const ProductCard = ({ product }) => {
       </Link>
 
       {/* Product Information Details */}
-      <div className="product-info">
-        <h3 className="product-title" title={title}>
-          {title}
-        </h3>
+      <div>
+        <div className="product-info">
+          <h3 className="product-title" title={title}>
+            {title}
+          </h3>
 
-        {/* MUI Rating integration */}
-        <div className="product-rating-container">
-          <Rating
-            name="product-rating"
-            value={rating.rate}
-            precision={0.1}
-            readOnly
-            size="small"
-            sx={{
-              color: "#faaf00", // Amazon iconic gold star color
-              fontSize: "1rem",
-            }}
-          />
-          <span className="rating-count">{rating.count}</span>
+          {/* MUI Rating integration */}
+          <div className="product-rating-container">
+            <Rating
+              name="product-rating"
+              value={rating.rate}
+              precision={0.1}
+              readOnly
+              size="small"
+              sx={{
+                color: "#faaf00", // Amazon iconic gold star color
+                fontSize: "1rem",
+              }}
+            />
+            <span className="rating-count">{rating.count}</span>
+          </div>
+
+          {/* Pricing Layout */}
+          <div className="product-price">
+            <span className="price-currency">$</span>
+            <span className="price-amount">{price}</span>
+          </div>
         </div>
 
-        {/* Pricing Layout */}
-        <div className="product-price">
-          <span className="price-currency">$</span>
-          <span className="price-amount">{price}</span>
+        {/* Context Action Button Container */}
+        <div className="product-action">
+          <button className="add-to-cart-btn" onClick={handleAddToCart}>
+            Add to Cart
+          </button>
         </div>
-      </div>
-
-      {/* Context Action Button Container */}
-      <div className="product-action">
-        <button className="add-to-cart-btn" onClick={handleAddToCart}>
-          Add to Cart
-        </button>
       </div>
     </div>
   );

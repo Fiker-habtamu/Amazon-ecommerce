@@ -9,6 +9,7 @@ const CategoryGrid = () => {
       { 
 	  categoryImage.map((category,index)=>(
 		<CategoryCard category={category}
+          key={category.name}
           items={{ image: category.imgLink }}
           linkText="See more"/>
 	  ))

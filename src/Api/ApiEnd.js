@@ -1,2 +1,2 @@
-let baseApi = "https://fakestoreapi.com/products/category"
+let baseApi = "https://fakestoreapi.com"
 export {baseApi}

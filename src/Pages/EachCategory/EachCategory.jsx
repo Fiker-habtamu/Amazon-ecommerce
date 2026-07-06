@@ -13,7 +13,7 @@ function EachCategory() {
   useEffect(() => {
     let fetchData = async () => {
       try {
-        let response = await axios.get(`${baseApi}/${categoryName}`);
+        let response = await axios.get(`${baseApi}/products/category/${categoryName}`);
         setProduct(response.data);
       } catch (error) {
         setError(error.message);
