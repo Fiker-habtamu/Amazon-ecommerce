@@ -13,6 +13,11 @@
   gap: 20px;
   justify-items: center; /* Centers cards inside their grid cells */
 }
+.category_name{
+  height: 30px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid black;
+}
 
 @media (max-width: 500px) {
   .products-grid {

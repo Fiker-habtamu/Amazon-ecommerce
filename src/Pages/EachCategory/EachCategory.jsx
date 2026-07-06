@@ -14,7 +14,6 @@ function EachCategory() {
     let fetchData = async () => {
       try {
         let response = await axios.get(`${baseApi}/${categoryName}`);
-        console.log(response.data);
         setProduct(response.data);
       } catch (error) {
         setError(error.message);
@@ -27,7 +26,7 @@ function EachCategory() {
   if (loading)
     return (
       <section className="h-[100px ] flex justify-center items-center">
-        <span>
+        <span className="mt-[50px]">
           <GridLoader />
         </span>
       </section>
@@ -35,6 +34,7 @@ function EachCategory() {
   if (error) return <section>Error: {error}</section>;
   return (
     <section className="products-section-container">
+      <h3 className="category_name">Category / {categoryName}</h3>
       <div className="products-grid">
         {product.map((eachProducts) => {
           return <ProductCard product={eachProducts} key={eachProducts.id} />;
