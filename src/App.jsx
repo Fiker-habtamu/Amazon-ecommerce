@@ -1,17 +1,12 @@
 import Header from "./components/Header/Header"
 import './App.css'
-import CarouselEffect from "./components/CarouselEffect/CarouselEffect"
-import CategoryGrid from "./components/CategoryGrid/CategoryGrid"
-import Products from "./components/Products/Products"
+import Landing from "./Pages/Landing/Landing"
 
 function App() {
 
   return (
     <>
-    <Header/>
-    <CarouselEffect/>
-    <CategoryGrid/>
-    <Products/>
+    <Landing/>
     </>
   )
 }
