@@ -1,0 +1,22 @@
+.products-section-container {
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #eaeded; /* Amazon's classic light-grey page background */
+}
+
+.products-grid {
+  display: grid;
+  /* Automatically columns layout based on available width */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  justify-items: center; /* Centers cards inside their grid cells */
+}
+
+@media (max-width: 500px) {
+  .products-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px;
+  }
+}

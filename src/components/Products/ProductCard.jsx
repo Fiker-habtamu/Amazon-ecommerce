@@ -2,7 +2,8 @@ import React from 'react';
 import Rating from '@mui/material/Rating';
 import './ProductCard.css';
 
-const ProductCard = ({ title, image, price, rating, rateCount }) => {
+const ProductCard = ({product}) => {
+  const {id,title,price,description,category,image,rating} = product
   
   const handleAddToCart = () => {
     console.log(`Added "${title}" to cart.`);
@@ -26,7 +27,7 @@ const ProductCard = ({ title, image, price, rating, rateCount }) => {
         <div className="product-rating-container">
           <Rating 
             name="product-rating" 
-            value={rating} 
+            value={rating.rate} 
             precision={0.1} 
             readOnly 
             size="small"
@@ -35,7 +36,7 @@ const ProductCard = ({ title, image, price, rating, rateCount }) => {
               fontSize: '1rem'
             }}
           />
-          <span className="rating-count">{rateCount}</span>
+          <span className="rating-count">{rating.count}</span>
         </div>
 
         {/* Pricing Layout */}

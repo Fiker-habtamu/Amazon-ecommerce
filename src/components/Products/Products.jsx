@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { DotLoader, GridLoader } from "react-spinners";
+import ProductCard from "./ProductCard";
+import './Products.css';
 
 function Products() {
-  const [products, setProducts] = useState();
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [Error, setError] = useState(null);
+  const [error, setError] = useState(null);
   useEffect(() => {
     let fetchData = async () => {
       try {
-        let response = await axios.get(
-          "https://fakestoreapi.noksha.dev/api/products",
-        );
+        let response = await axios.get("https://fakestoreapi.com/products");
         setProducts(response.data);
-        console.log(loading);
       } catch (error) {
         console.log(error);
         setError(error.message);
@@ -23,12 +22,24 @@ function Products() {
     };
     fetchData();
   }, []);
-  if (loading) return(
-    <section className="h-[100px ] flex justify-center items-center"><span><GridLoader /></span></section>)
-  if (Error) return(<section>Error: {Error}</section>)
-  return(
-  <section className="h-[300px ]">Products</section>
-)
+  if (loading)
+    return (
+      <section className="h-[100px ] flex justify-center items-center">
+        <span>
+          <GridLoader />
+        </span>
+      </section>
+    );
+  if (error) return <section>Error: {error}</section>;
+  return (
+    <section className="products-section-container">
+      <div className="products-grid">
+        {products.map((eachProducts) => {
+          return <ProductCard product={eachProducts} key={eachProducts.id} />;
+        })}
+      </div>
+    </section>
+  );
 }
 
 export default Products;

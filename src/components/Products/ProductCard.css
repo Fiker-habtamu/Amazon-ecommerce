@@ -92,22 +92,37 @@
 /* Rounded pill button matching image context styling precisely */
 .product-action {
   width: 100%;
+  height: 32px; /* Reserves space so the layout doesn't jump when the button appears */
+  overflow: hidden; /* Keeps the button hidden when it shifts downward */
+  margin-top: 10px;
 }
 
+/* 2. Set up the initial hidden state and transition rules for the button */
 .add-to-cart-btn {
   width: 100%;
   background-color: #f0c14b;
   border: 1px solid #a88734;
   color: #111111;
   padding: 6px 0;
-  border-radius: 20px; /* Smooth pill curve */
+  border-radius: 20px;
   cursor: pointer;
   font-size: 12px;
   font-weight: 500;
   outline: none;
-  transition: background-color 0.1s ease;
+  
+  /* --- HOVER EFFECT PROPERTIES --- */
+  opacity: 0; /* Hidden by default */
+  transform: translateY(20px); /* Pushed downwards outside the action container boundary */
+  transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.1s ease; /* Smooth sliding entry */
 }
 
+/* 3. Trigger the entry state when the USER hovers over the parent PRODUCT-CARD */
+.product-card:hover .add-to-cart-btn {
+  opacity: 1; /* Fades in */
+  transform: translateY(0); /* Slides up to its original spot */
+}
+
+/* 4. Keep your standard active/hover micro-interactions intact */
 .add-to-cart-btn:hover {
   background-color: #ddb347;
   border-color: #846a29;
