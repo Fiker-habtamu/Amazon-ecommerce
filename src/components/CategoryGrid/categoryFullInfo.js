@@ -15,8 +15,8 @@ export const categoryImage = [
     imgLink: "https://images.unsplash.com/photo-1479064555552-3ef4979f8908?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
-    title: "jewelry ",
-    name: "jewelry  ",
+    title: "jewelry",
+    name: "jewelery",
     imgLink: "https://static.vecteezy.com/system/resources/thumbnails/051/812/285/small/gold-jewelry-necklace-set-with-luxury-topaz-on-white-background-isolated-on-white-background-free-photo.jpg",
   },
 ];
