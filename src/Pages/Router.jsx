@@ -8,7 +8,6 @@ import Cart from './Cart/Cart'
 
 function Router() {
   return (
-    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/auth" element={<SignUp />} />
@@ -16,7 +15,6 @@ function Router() {
         <Route path="/orders" element={<Orders />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
-    </BrowserRouter>
   );
 }
 
