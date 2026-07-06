@@ -34,7 +34,7 @@ function Products() {
   return (
     <section className="products-section-container">
       <div className="products-grid">
-        {products.map((eachProducts) => {
+        {products.slice(0,8).map((eachProducts) => {
           return <ProductCard product={eachProducts} key={eachProducts.id} />;
         })}
       </div>
