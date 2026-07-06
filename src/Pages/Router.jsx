@@ -6,6 +6,7 @@ import Payment from './Payment/Payment'
 import Orders from './Orders/Orders'
 import Cart from './Cart/Cart'
 import EachCategory from './EachCategory/EachCategory'
+import ProductDetail from './ProductDetail/ProductDetail'
 
 function Router() {
   return (
@@ -15,6 +16,7 @@ function Router() {
         <Route path="/payment" element={<Payment />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/category/:categoryName" element={<EachCategory />} />
+        <Route path="/product/:productId" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
   );

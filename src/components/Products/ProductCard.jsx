@@ -1,10 +1,11 @@
-import React from 'react';
-import Rating from '@mui/material/Rating';
-import './ProductCard.css';
+import React from "react";
+import Rating from "@mui/material/Rating";
+import "./ProductCard.css";
+import {Link} from 'react-router-dom'
 
-const ProductCard = ({product}) => {
-  const {id,title,price,description,category,image,rating} = product
-  
+const ProductCard = ({ product }) => {
+  const { id, title, price, description, category, image, rating } = product;
+
   const handleAddToCart = () => {
     console.log(`Added "${title}" to cart.`);
     // Advanced integration: dispatch an action or update state context here
@@ -13,9 +14,11 @@ const ProductCard = ({product}) => {
   return (
     <div className="product-card">
       {/* Product Image Window */}
-      <div className="product-image-container">
-        <img src={image} alt={title} className="product-image" />
-      </div>
+      <Link to={`/product/${id}`}>
+        <div className="product-image-container">
+          <img src={image} alt={title} className="product-image" />
+        </div>
+      </Link>
 
       {/* Product Information Details */}
       <div className="product-info">
@@ -25,15 +28,15 @@ const ProductCard = ({product}) => {
 
         {/* MUI Rating integration */}
         <div className="product-rating-container">
-          <Rating 
-            name="product-rating" 
-            value={rating.rate} 
-            precision={0.1} 
-            readOnly 
+          <Rating
+            name="product-rating"
+            value={rating.rate}
+            precision={0.1}
+            readOnly
             size="small"
             sx={{
-              color: '#faaf00', // Amazon iconic gold star color
-              fontSize: '1rem'
+              color: "#faaf00", // Amazon iconic gold star color
+              fontSize: "1rem",
             }}
           />
           <span className="rating-count">{rating.count}</span>
