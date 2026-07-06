@@ -1,0 +1,118 @@
+.product-card {
+  background-color: #ffffff;
+  border: 1px solid #e7e7e7;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 240px; /* Adapts cleanly inside grid columns */
+  height: 400px;
+  background: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Image containment boundaries */
+.product-image-container {
+  width: 100%;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.product-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Keeps transparent product dimensions accurate */
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* Line clamping to cut off long titles elegantly after 3 lines */
+.product-title {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #0f1111;
+  line-height: 1.4;
+  margin-bottom: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 58px; /* Standardize spatial layout fields */
+}
+
+/* Rating row layouts */
+.product-rating-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 8px;
+}
+
+.rating-count {
+  font-size: 12px;
+  color: #007185;
+}
+
+/* Formatting Price Layout */
+.product-price {
+  display: flex;
+  align-items: flex-start;
+  color: #0f1111;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  margin-bottom: 10px;
+}
+
+.price-currency {
+  font-size: 11px;
+  margin-top: 2px;
+  font-weight: 600;
+}
+
+.price-amount {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Rounded pill button matching image context styling precisely */
+.product-action {
+  width: 100%;
+}
+
+.add-to-cart-btn {
+  width: 100%;
+  background-color: #f0c14b;
+  border: 1px solid #a88734;
+  color: #111111;
+  padding: 6px 0;
+  border-radius: 20px; /* Smooth pill curve */
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  outline: none;
+  transition: background-color 0.1s ease;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #ddb347;
+  border-color: #846a29;
+}
+
+.add-to-cart-btn:active {
+  background-color: #c8a13c;
+}
