@@ -26,7 +26,7 @@ function EachCategory() {
   if (loading)
     return (
       <section className="h-[100px ] flex justify-center items-center">
-        <span className="mt-[50px]">
+        <span className="mt-[50px ]">
           <GridLoader />
         </span>
       </section>

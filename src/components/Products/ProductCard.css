@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  max-width: 240px; /* Adapts cleanly inside grid columns */
+  max-width: 240px; 
   height: 400px;
   background: #fff;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -30,7 +30,7 @@
 .product-image {
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain; /* Keeps transparent product dimensions accurate */
+  object-fit: contain; 
 }
 
 .product-info {
@@ -52,7 +52,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  min-height: 58px; /* Standardize spatial layout fields */
+  min-height: 58px; 
 }
 
 /* Rating row layouts */
@@ -92,8 +92,8 @@
 /* Rounded pill button matching image context styling precisely */
 .product-action {
   width: 100%;
-  height: 32px; /* Reserves space so the layout doesn't jump when the button appears */
-  overflow: hidden; /* Keeps the button hidden when it shifts downward */
+  height: 32px; 
+  overflow: hidden; 
   margin-top: 10px;
 }
 
@@ -111,15 +111,15 @@
   outline: none;
   
   /* --- HOVER EFFECT PROPERTIES --- */
-  opacity: 0; /* Hidden by default */
-  transform: translateY(20px); /* Pushed downwards outside the action container boundary */
-  transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.1s ease; /* Smooth sliding entry */
+  opacity: 0; 
+  transform: translateY(20px); 
+  transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.1s ease; 
 }
 
 /* 3. Trigger the entry state when the USER hovers over the parent PRODUCT-CARD */
 .product-card:hover .add-to-cart-btn {
-  opacity: 1; /* Fades in */
-  transform: translateY(0); /* Slides up to its original spot */
+  opacity: 1; 
+  transform: translateY(0); 
 }
 
 /* 4. Keep your standard active/hover micro-interactions intact */
@@ -133,32 +133,100 @@
 }
 
 
+/* ===================================================
+   YOUR FIXED PRODUCT LAYOUT CUSTOMIZATIONS
+   =================================================== */
+
 .product_fixed{
+  border: none;
+  max-width: 100%;
   box-shadow: none;
   height: auto;
   display: flex !important;
+  flex-direction: row;
   gap: 50px;
   width: 100%;
+  padding: 20px;
 }
-.product_fixed h3{
-  padding: 20px 0px;
+
+.product_fixed:hover {
+  box-shadow: none; /* Disables homepage pop-shadow */
 }
+
+.product_fixed .product-image-container {
+  width: 300px;
+  height: 300px;
+  margin-bottom: 0;
+}
+
+.product_fixed img{
+  width: 300px !important;
+  height: 100% !important;
+  object-fit: contain;
+}
+
+.product_fixed .product-details-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.product_fixed .product-title {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.3;
+  display: block; /* Disables the 3-line clamping limit */
+  overflow: visible;
+  min-height: auto;
+  padding: 10px 0px;
+  margin-bottom: 0;
+}
+
+/* Description Text Styling rules */
+.product-description {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 14px;
+  color: #333333;
+  line-height: 1.5;
+  margin: 15px 0;
+}
+
+.product_fixed .product-price {
+  margin-top: 10px;
+}
+
+.product_fixed .price-amount {
+  font-size: 24px;
+}
+
+/* Overrides the hover container mechanics to keep button completely static */
+.product_fixed .product-action {
+  height: auto;
+  overflow: visible;
+  margin-top: 20px;
+}
+
 .product_fixed .add-to-cart-btn{
+  opacity: 1 !important;
+  transform: translateY(0) !important;
   display: block;
   position: static;
   width: 150px;
   margin-right: 40px;
+  padding: 8px 0;
 }
-.product_fixed{
-  height: 50vh;
-}
-.product_fixed img{
-  width: 300px !important;
-  height: auto;
-}
+
 @media screen and (max-width:768px) {
   .product_fixed{
-    display: flex;
+    display: flex !important;
     flex-direction: column;
+    gap: 20px;
+  }
+  .product_fixed .product-image-container {
+    width: 100%;
+    height: 250px;
+  }
+  .product_fixed img {
+    width: 100% !important;
   }
 }

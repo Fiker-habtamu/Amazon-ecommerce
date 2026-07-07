@@ -3,16 +3,15 @@ import Rating from "@mui/material/Rating";
 import "./ProductCard.css";
 import { Link } from "react-router-dom";
 
-const ProductCard = ({ product, flex,renderDesc }) => {
+const ProductCard = ({ product, flex, renderDesc }) => {
   const { id, title, price, description, category, image, rating } = product;
 
   const handleAddToCart = () => {
     console.log(`Added "${title}" to cart.`);
-    // Advanced integration: dispatch an action or update state context here
   };
 
   return (
-    <div className={`product-card ${flex?"product_fixed":" "}`}>
+    <div className={`product-card ${flex ? "product_fixed" : " "}`}>
       {/* Product Image Window */}
       <Link to={`/product/${id}`}>
         <div className="product-image-container">
@@ -21,7 +20,7 @@ const ProductCard = ({ product, flex,renderDesc }) => {
       </Link>
 
       {/* Product Information Details */}
-      <div>
+      <div className="product-details-content">
         <div className="product-info">
           <h3 className="product-title" title={title}>
             {title}
@@ -31,17 +30,22 @@ const ProductCard = ({ product, flex,renderDesc }) => {
           <div className="product-rating-container">
             <Rating
               name="product-rating"
-              value={rating.rate}
+              value={rating?.rate || 0}
               precision={0.1}
               readOnly
               size="small"
               sx={{
-                color: "#faaf00", // Amazon iconic gold star color
+                color: "#faaf00", 
                 fontSize: "1rem",
               }}
             />
-            <span className="rating-count">{rating.count}</span>
+            <span className="rating-count">{rating?.count || 0}</span>
           </div>
+
+          {/* Conditional Description Render */}
+          {renderDesc && (
+            <p className="product-description">{description}</p>
+          )}
 
           {/* Pricing Layout */}
           <div className="product-price">
