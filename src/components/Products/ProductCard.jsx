@@ -12,7 +12,7 @@ const ProductCard = ({ product, flex,renderDesc }) => {
   };
 
   return (
-    <div className={`product-card ${true?"product_fixed":""}`}>
+    <div className={`product-card ${flex?"product_fixed":" "}`}>
       {/* Product Image Window */}
       <Link to={`/product/${id}`}>
         <div className="product-image-container">
