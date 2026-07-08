@@ -25,6 +25,7 @@ const Header = () => {
   };
 
   return (
+    <div className="fixed">
     <header className="amazon-header">
       {/* Top Navigation Bar */}
       <div className="nav-top">
@@ -130,6 +131,7 @@ const Header = () => {
         <div className="nav-bottom-item border-hover hide-tablet">Sell</div>
       </div>
     </header>
+    </div>
   );
 };
 
