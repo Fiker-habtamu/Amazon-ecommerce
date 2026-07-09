@@ -169,8 +169,8 @@
 
 .checkout-btn {
   width: 100%;
-  background-color: #ffd814;
-  border: 1px solid #fcd200;
+  background-color: #F3A847;
+  border: 1px solid #e69020;
   border-radius: 8px;
   padding: 8px 0;
   font-size: 13px;
@@ -182,7 +182,7 @@
 }
 
 .checkout-btn:hover {
-  background-color: #f7ca00;
+  background-color: #e69020;
 }
 
 /* --- Responsive Layout Rules --- */

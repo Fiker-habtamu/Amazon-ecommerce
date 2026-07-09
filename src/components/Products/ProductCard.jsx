@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Type } from "../../Utility/action.type";
 import { DataContext } from "../../DataProvider/DataProvider";
 
-const ProductCard = ({ product, flex, renderDesc }) => {
+const ProductCard = ({ product, flex, renderDesc,notRenderAddBtn }) => {
   const { id, title, price, description, category, image, rating } = product;
 
   const [state,dispatch] = useContext(DataContext)
@@ -61,11 +61,12 @@ const ProductCard = ({ product, flex, renderDesc }) => {
         </div>
 
         {/* Context Action Button Container */}
-        <div className="product-action">
+        {!notRenderAddBtn &&  <div className="product-action">
           <button className="add-to-cart-btn" onClick={handleAddToCart}>
             Add to Cart
           </button>
-        </div>
+        </div> }
+      
       </div>
     </div>
   );

@@ -2,9 +2,13 @@ import React, { useContext } from "react";
 import "./Card.css";
 import ProductCard from "../../components/Products/ProductCard";
 import { DataContext } from "../../DataProvider/DataProvider";
+import { Link } from "react-router-dom";
 
 function Cart() {
-	const [{basket},dispatch] = useContext(DataContext)
+  const [{ basket }, dispatch] = useContext(DataContext);
+  let total = basket.reduce((amount,item)=>{
+	return  amount + item.price
+  },0)
   return (
     <div className="cart-page-container">
       {/* Left Column: Basket Summary Listing */}
@@ -16,27 +20,42 @@ function Cart() {
 
         <hr className="cart-divider" />
         <div>
-			{basket.length==0?(<p className="empty-cart-msg">Your Shopping Basket is empty.</p>):(
-				basket?.map((item,i)=>{
-					return <ProductCard key={i} product={item} flex={true} renderDesc={true}/>
-				})
-			)}
+          {basket.length == 0 ? (
+            <p className="empty-cart-msg">Your Shopping Basket is empty.</p>
+          ) : (
+            basket?.map((item, i) => {
+              return (
+                <ProductCard
+                  key={i}
+                  product={item}
+                  flex={true}
+                  renderDesc={true}
+                  notRenderAddBtn={true}
+                />
+              );
+            })
+          )}
         </div>
       </div>
 
       {/* Right Column: Checkout Subtotal Panel Widget */}
-      <div className="cart-right-column">
-        <div className="subtotal-box">
-          <p className="subtotal-text">
-            10$ <strong>0</strong>
-          </p>
-          <div className="gift-checkbox-wrapper">
-            <input type="checkbox" id="gift-check" />
-            <label htmlFor="gift-check">This order contains a gift</label>
+      {basket?.length !== 0 && (
+        <div className="cart-right-column">
+          <div className="subtotal-box">
+            <p className="subtotal-text">
+              Subtotal ({basket?.length} item{basket?.length !== 1 ? "s" : ""}):{" "}
+              <strong>${total}</strong>
+            </p>
+            <div className="gift-checkbox-wrapper">
+              <input type="checkbox" id="gift-check" />
+              <label htmlFor="gift-check">This order contains a gift</label>
+            </div>
+            <Link to={"/payments"}>
+              <button className="checkout-btn">Continue to Checkout</button>
+            </Link>
           </div>
-          <button className="checkout-btn">Continue to Checkout</button>
         </div>
-      </div>
+      )}
     </div>
   );
 }
