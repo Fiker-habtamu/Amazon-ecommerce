@@ -32,7 +32,7 @@ const Auth = () => {
           type: Type.SET_USER,
           user: userCredential.user,
         });
-        // navigate("/"); // Redirect to home page on success
+        navigate("/"); // Redirect to home page on success
       })
       .catch((err) => {
         setLoading(false);
@@ -53,8 +53,7 @@ const Auth = () => {
           type: Type.SET_USER,
           user: userCredential.user,
         });
-        console.log("sign up:", userCredential.user);
-        // navigate("/"); // Redirect to home page on success
+        navigate("/"); // Redirect to home page on success
       })
       .catch((err) => {
         setLoading(false);
