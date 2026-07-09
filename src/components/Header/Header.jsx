@@ -11,6 +11,9 @@ const Header = () => {
   const [searchCategory, setSearchCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [{basket}] = useContext(DataContext)
+  const itemAmount = basket?.reduce((amount,item)=>{
+    return amount + item.amount
+  },0)
   const categories = [
     "All",
     "Arts & Crafts",
@@ -108,7 +111,7 @@ const Header = () => {
           <Link to={"cart"}>
             <div className="nav-cart border-hover">
               <div className="cart-icon-wrapper">
-                <span className="cart-count bg-[#131921]">{basket.length}</span>
+                <span className="cart-count bg-[#131921]">{itemAmount}</span>
                 <BiCart className="icon-cart" />
               </div>
               <span className="text-bold cart-text hide-mobile">Cart</span>

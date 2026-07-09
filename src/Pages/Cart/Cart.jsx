@@ -4,6 +4,9 @@ import ProductCard from "../../components/Products/ProductCard";
 import { DataContext } from "../../DataProvider/DataProvider";
 import { Link } from "react-router-dom";
 import { Type } from "../../Utility/action.type";
+import { IoIosArrowUp } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
+
 
 function Cart() {
   const [{ basket }, dispatch] = useContext(DataContext);
@@ -48,14 +51,14 @@ function Cart() {
                   />
                   <div className="cart-quantity-controls">
                     <button className="qty-btn" onClick={() => increment(item)}>
-                      +
+                      <IoIosArrowUp/>
                     </button>
                     <span className="qty-number">{item.amount}</span>
                     <button
                       className="qty-btn"
                       onClick={() => decrement(item.id)}
                     >
-                      -
+                      <IoIosArrowDown/>
                     </button>
                   </div>
                 </section>
