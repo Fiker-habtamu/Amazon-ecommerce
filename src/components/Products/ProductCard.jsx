@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import Rating from "@mui/material/Rating";
 import "./ProductCard.css";
 import { Link } from "react-router-dom";
+import { Type } from "../../Utility/action.type";
+import { DataContext } from "../../DataProvider/DataProvider";
 
 const ProductCard = ({ product, flex, renderDesc }) => {
   const { id, title, price, description, category, image, rating } = product;
 
+  const [state,dispatch] = useContext(DataContext)
   const handleAddToCart = () => {
-    console.log(`Added "${title}" to cart.`);
+    dispatch({
+      type: Type.ADD_TO_CART,
+      item:{id, title, price, description, category, image, rating}
+    })
   };
 
   return (

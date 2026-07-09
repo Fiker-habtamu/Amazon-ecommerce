@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { SlLocationPin } from "react-icons/sl";
 import { BiCart } from "react-icons/bi";
 import { FiMenu } from "react-icons/fi";
 import "./Header.css";
 import { Link } from "react-router-dom";
+import { DataContext } from "../../DataProvider/DataProvider";
 
 const Header = () => {
   const [searchCategory, setSearchCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
-
+  const [{basket}] = useContext(DataContext)
   const categories = [
     "All",
     "Arts & Crafts",
@@ -107,7 +108,7 @@ const Header = () => {
           <Link to={"cart"}>
             <div className="nav-cart border-hover">
               <div className="cart-icon-wrapper">
-                <span className="cart-count bg-[#131921]">0</span>
+                <span className="cart-count bg-[#131921]">{basket.length}</span>
                 <BiCart className="icon-cart" />
               </div>
               <span className="text-bold cart-text hide-mobile">Cart</span>
