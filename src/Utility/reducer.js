@@ -2,6 +2,7 @@ import { Type } from "./action.type";
 
 let initialState = {
   basket: [],
+  user:null
 };
 
 let reducer = (state, action) => {
@@ -38,6 +39,10 @@ let reducer = (state, action) => {
       }
       return {
         ...state,basket:newBasket
+      }
+    case Type.SET_USER:
+      return{
+        ...state,user:action.user
       }
     default:
       return state;
