@@ -91,18 +91,29 @@ const Header = () => {
             </div>
 
             {/* Account & Lists */}
-            <Link to={"auth"}>
+            <Link to={!user && '/auth'}>
               <div className="nav-account border-hover">
                 <div>
                   {user ? (
-                    <p className="text-light hide-mobile">Hello, {user?.email?.split("@")[0]}</p>
+                    <>
+                      <p className="text-light hide-mobile">
+                        Hello, {user?.email?.split("@")[0]}
+                      </p>
+                      <span className="text-light hide-mobile">Sign Out</span>
+                    </>
                   ) : (
-                    <span className="text-light hide-mobile">Sign In</span>
+                    <>
+                      <p className="text-light hide-mobile">
+                        Hello,{" "}
+                        <span className="text-light hide-mobile">Sign In</span>
+                      </p>
+                      <span className="text-bold">
+                        Account{" "}
+                        <span className="dropdown-arrow hide-mobile">▼</span>
+                      </span>
+                    </>
                   )}
                 </div>
-                <span className="text-bold">
-                  Account <span className="dropdown-arrow hide-mobile">▼</span>
-                </span>
               </div>
             </Link>
 
