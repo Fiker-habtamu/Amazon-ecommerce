@@ -6,6 +6,7 @@ import { FiMenu } from "react-icons/fi";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import { DataContext } from "../../DataProvider/DataProvider";
+import { auth } from "../../Utility/fireBase";
 
 const Header = () => {
   const [searchCategory, setSearchCategory] = useState("All");
@@ -99,7 +100,7 @@ const Header = () => {
                       <p className="text-light hide-mobile">
                         Hello, {user?.email?.split("@")[0]}
                       </p>
-                      <span className="text-light hide-mobile">Sign Out</span>
+                      <span className="text-light hide-mobile" onClick={()=>auth.signOut()}>Sign Out</span>
                     </>
                   ) : (
                     <>
