@@ -1,0 +1,178 @@
+.payment-page {
+  background-color: #ffffff;
+  min-height: 100vh;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: #111111;
+}
+
+.payment-header {
+  background-color: #f3f3f3;
+  text-align: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.payment-header h1 {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.payment-header a {
+  text-decoration: none;
+  color: #007185;
+}
+
+.payment-header a:hover {
+  text-decoration: underline;
+}
+
+.payment-content-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Base horizontal section dividers */
+.payment-section {
+  display: flex;
+  padding: 25px 0;
+  border-bottom: 1px solid #e7e7e7;
+}
+
+.section-title {
+  flex: 0.3;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.section-data {
+  flex: 0.7;
+}
+
+/* Section specific typography spacing layouts */
+.user-email {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.section-data p {
+  font-size: 14px;
+  line-height: 1.4;
+  color: #333;
+}
+
+/* Reduced size layout rule sets for item reviews */
+.products-review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* .checkout-mini-product-card {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+} */
+
+/* .mini-image-box {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.mini-image-box img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+} */
+
+/* .mini-product-details h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+} */
+
+/* .mini-rating-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+} */
+/* 
+.count-label {
+  font-size: 12px;
+  color: #565959;
+} */
+
+/* .mini-price {
+  font-size: 15px;
+  font-weight: 600;
+} */
+
+/* Stripe Field Box Containers */
+.payment-gateway-box form {
+  max-width: 450px;
+}
+
+.stripe-input-wrapper {
+  border: 1px solid #a6a6a6;
+  border-radius: 3px;
+  padding: 10px;
+  background-color: #fff;
+  margin-bottom: 15px;
+}
+
+.stripe-input-wrapper:focus-within {
+  border: 1px solid #e77600;
+  box-shadow: 0 0 3px 2px rgba(228, 121, 17, 0.5);
+}
+
+.payment-order-summary {
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.payment-order-summary strong {
+  font-size: 16px;
+}
+
+.payment-submit-btn {
+  background-color: #f0c14b;
+  border: 1px solid;
+  border-color: #a88734 #9c7e31 #846a29;
+  border-radius: 3px;
+  width: 100%;
+  padding: 8px 0;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #111;
+  transition: background-color 0.1s;
+}
+
+.payment-submit-btn:hover {
+  background-color: #ddb347;
+}
+
+.payment-submit-btn:disabled {
+  background-color: #f7dfa1;
+  border-color: #f5d78e;
+  cursor: not-allowed;
+}
+
+.payment-error-alert {
+  color: #c40000;
+  font-size: 13px;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .payment-section {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
