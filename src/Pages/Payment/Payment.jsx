@@ -57,25 +57,6 @@ const Payment = () => {
           <div className="section-data products-review-list">
             {basket.map((item) => (
 				<ProductCard key={item.id} product={item} flex={true} notRenderAddBtn={true} className="checkout-mini-product-card"/>
-            //   <div  className="checkout-mini-product-card">
-            //     <div className="mini-image-box">
-            //       <img src={item.image} alt={item.title} />
-            //     </div>
-            //     <div className="mini-product-details">
-            //       <h4>{item.title}</h4>
-            //       <div className="mini-rating-row">
-            //         <Rating 
-            //           value={item.rating.rate} 
-            //           precision={0.1} 
-            //           readOnly 
-            //           size="small" 
-            //           sx={{ color: "#faaf00" }} 
-            //         />
-            //         <span className="count-label">{item.rating.count}</span>
-            //       </div>
-            //       <p className="mini-price">${item.price.toFixed(2)}</p>
-            //     </div>
-            //   </div>
             ))}
           </div>
         </div>
