@@ -5,9 +5,13 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Payment.css";
 import ProductCard from "../../components/Products/ProductCard";
 import { DataContext } from "../../DataProvider/DataProvider";
+import { axiosInstant } from "../../Api/axios";
+import { ClipLoader } from "react-spinners";
+import { db } from "../../Utility/fireBase";
+import { collection, doc, setDoc } from "firebase/firestore";
 
 const Payment = () => {
-  const [{user,basket},dispatch] = useContext(DataContext)
+  const [{ user, basket }, dispatch] = useContext(DataContext);
 
   const totalItems = basket?.reduce((amount, item) => {
     return amount + item.amount;
@@ -28,8 +32,34 @@ const Payment = () => {
     setError(null);
     try {
       // 1, backend contact to the client secret
+      const response = await axiosInstant({
+        method: "POST",
+        url: `payment/create?total=${totalPrice * 100}`,
+      });
+      const clientSecret = response.data.message;
+      // 2, confirmation in the client side (react side)
+      const { paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+        },
+      });
+      setProcessing(false);
+      console.log(paymentIntent);
+      // after confirmation ---> order firebase database save, clear basket
+      const orderDocRef = doc(
+        collection(db, "users", user?.uid, "orders"),
+        paymentIntent.id,
+      );
+      await setDoc(orderDocRef, {
+        basket: basket,
+        amount: paymentIntent.amount,
+        created: paymentIntent.created,
+      });
+      navigate("/orders",{state:{msg:"you have placed new order"}})
     } catch (error) {
-      setError(error.message)
+      setError(error.message);
+      setProcessing(false);
+      console.log(error);
     }
   };
 
@@ -37,11 +67,12 @@ const Payment = () => {
     <div className="payment-page">
       {/* Page Header */}
       <div className="payment-header">
-        <h1>Checkout (<Link to="/cart">{totalItems} items</Link>)</h1>
+        <h1>
+          Checkout (<Link to="/cart">{totalItems} items</Link>)
+        </h1>
       </div>
 
       <div className="payment-content-container">
-        
         {/* SECTION 1: DELIVERY ADDRESS */}
         <div className="payment-section">
           <div className="section-title">
@@ -61,7 +92,14 @@ const Payment = () => {
           </div>
           <div className="section-data products-review-list">
             {basket.map((item) => (
-				<ProductCard key={item.id} product={item} flex={true} notRenderAddBtn={true} RenderAmount={true} className="checkout-mini-product-card"/>
+              <ProductCard
+                key={item.id}
+                product={item}
+                flex={true}
+                notRenderAddBtn={true}
+                RenderAmount={true}
+                className="checkout-mini-product-card"
+              />
             ))}
           </div>
         </div>
@@ -73,10 +111,9 @@ const Payment = () => {
           </div>
           <div className="section-data payment-gateway-box">
             <form onSubmit={handleSubmitPayment}>
-              
               {/* Stripe Dynamic Secure Card Input */}
               <div className="stripe-input-wrapper">
-                <CardElement 
+                <CardElement
                   options={{
                     style: {
                       base: {
@@ -92,22 +129,32 @@ const Payment = () => {
 
               {/* Order total output display */}
               <div className="payment-order-summary">
-                <p>Total Order | <strong>${totalPrice}</strong></p>
+                <p>
+                  Total Order | <strong>${totalPrice}</strong>
+                </p>
               </div>
 
               {error && <div className="payment-error-alert">{error}</div>}
 
-              <button 
-                type="submit" 
-                className="payment-submit-btn" 
+              <button
+                type="submit"
+                className="payment-submit-btn"
                 disabled={processing || !stripe || !elements}
               >
-                {processing ? "Processing Transaction..." : "Pay Now"}
+                {processing ? (
+                  <p>
+                    Processing Transaction...
+                    <span>
+                      <ClipLoader size={15} />
+                    </span>
+                  </p>
+                ) : (
+                  "Pay Now"
+                )}
               </button>
             </form>
           </div>
         </div>
-
       </div>
     </div>
   );

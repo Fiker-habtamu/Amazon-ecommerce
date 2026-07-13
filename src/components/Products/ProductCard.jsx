@@ -11,12 +11,11 @@ const ProductCard = ({
   renderDesc,
   notRenderAddBtn,
   RenderAmount,
-  className
+  className,
 }) => {
   const { id, title, price, description, category, image, rating } = product;
 
   const [{ user, basket }, dispatch] = useContext(DataContext);
-  console.log(product);
   const handleAddToCart = () => {
     dispatch({
       type: Type.ADD_TO_CART,
@@ -25,7 +24,9 @@ const ProductCard = ({
   };
 
   return (
-    <div className={`product-card ${flex ? "product_fixed" : " "} ${className || ""}`}>
+    <div
+      className={`product-card ${flex ? "product_fixed" : " "} ${className || ""}`}
+    >
       {/* Product Image Window */}
       <Link to={`/product/${id}`}>
         <div className="product-image-container">
