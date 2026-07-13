@@ -56,7 +56,7 @@ const Payment = () => {
           </div>
           <div className="section-data products-review-list">
             {basket.map((item) => (
-				<ProductCard key={item.id} product={item} flex={true} notRenderAddBtn={true} className="checkout-mini-product-card"/>
+				<ProductCard key={item.id} product={item} flex={true} notRenderAddBtn={true} RenderAmount={true} className="checkout-mini-product-card"/>
             ))}
           </div>
         </div>

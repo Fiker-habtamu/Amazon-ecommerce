@@ -216,6 +216,73 @@
   padding: 8px 0;
 }
 
+/* ===================================================
+   CHECKOUT PAGE: MINI PRODUCT CARD DOWNSIZING OVERRIDES
+   =================================================== */
+
+/* 1. Reduce the container spacing and heights */
+.checkout-mini-product-card {
+  gap: 15px !important;    /* Tighten the gap between image and text */
+  padding: 10px 0 !important;
+  height: auto !important; 
+  min-height: auto !important;
+  border-bottom: 1px solid #e7e7e7 !important; /* Add thin divider line */
+}
+
+/* 2. Shrink the image container boundary box */
+.checkout-mini-product-card .product-image-container {
+  width: 80px !important;
+  height: 80px !important;
+  margin-bottom: 0 !important;
+}
+
+.checkout-mini-product-card img {
+  width: 80px !important;
+  height: 80px !important;
+  object-fit: contain;
+}
+
+/* 3. Drop the title size and remove any line clamping fields */
+.checkout-mini-product-card .product-title {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  padding: 0 !important;
+  margin-bottom: 4px !important;
+  display: block !important; /* Remove 3-line limits */
+  min-height: auto !important;
+  overflow: visible !important;
+}
+
+/* 4. Downsize the Material UI stars and spacing */
+.checkout-mini-product-card .product-rating-container {
+  margin-bottom: 4px !important;
+  gap: 4px !important;
+}
+
+.checkout-mini-product-card .MuiRating-root {
+  font-size: 0.85rem !important; /* Shrinks the icon sizing slightly */
+}
+
+.checkout-mini-product-card .rating-count {
+  font-size: 11px !important;
+}
+
+/* 5. Scale down the currency and final pricing typography fields */
+.checkout-mini-product-card .product-price {
+  margin-bottom: 0 !important;
+  margin-top: 2px !important;
+}
+
+.checkout-mini-product-card .price-currency {
+  font-size: 10px !important;
+}
+
+.checkout-mini-product-card .price-amount {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
 @media screen and (max-width:768px) {
   .product_fixed{
     display: flex !important;

@@ -5,19 +5,27 @@ import { Link } from "react-router-dom";
 import { Type } from "../../Utility/action.type";
 import { DataContext } from "../../DataProvider/DataProvider";
 
-const ProductCard = ({ product, flex, renderDesc,notRenderAddBtn }) => {
+const ProductCard = ({
+  product,
+  flex,
+  renderDesc,
+  notRenderAddBtn,
+  RenderAmount,
+  className
+}) => {
   const { id, title, price, description, category, image, rating } = product;
 
-  const [state,dispatch] = useContext(DataContext)
+  const [{ user, basket }, dispatch] = useContext(DataContext);
+  console.log(product);
   const handleAddToCart = () => {
     dispatch({
       type: Type.ADD_TO_CART,
-      item:{id, title, price, description, category, image, rating}
-    })
+      item: { id, title, price, description, category, image, rating },
+    });
   };
 
   return (
-    <div className={`product-card ${flex ? "product_fixed" : " "}`}>
+    <div className={`product-card ${flex ? "product_fixed" : " "} ${className || ""}`}>
       {/* Product Image Window */}
       <Link to={`/product/${id}`}>
         <div className="product-image-container">
@@ -41,7 +49,7 @@ const ProductCard = ({ product, flex, renderDesc,notRenderAddBtn }) => {
               readOnly
               size="small"
               sx={{
-                color: "#faaf00", 
+                color: "#faaf00",
                 fontSize: "1rem",
               }}
             />
@@ -49,24 +57,32 @@ const ProductCard = ({ product, flex, renderDesc,notRenderAddBtn }) => {
           </div>
 
           {/* Conditional Description Render */}
-          {renderDesc && (
-            <p className="product-description">{description}</p>
-          )}
+          {renderDesc && <p className="product-description">{description}</p>}
 
           {/* Pricing Layout */}
           <div className="product-price">
             <span className="price-currency">$</span>
             <span className="price-amount">{price}</span>
           </div>
+          {/* conditional amount render */}
+          <div className="font-semibold text-[#e77600] mt-5!">
+            {RenderAmount && (
+              <div>
+                Amount:
+                {product.amount}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Context Action Button Container */}
-        {!notRenderAddBtn &&  <div className="product-action">
-          <button className="add-to-cart-btn" onClick={handleAddToCart}>
-            Add to Cart
-          </button>
-        </div> }
-      
+        {!notRenderAddBtn && (
+          <div className="product-action">
+            <button className="add-to-cart-btn" onClick={handleAddToCart}>
+              Add to Cart
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
