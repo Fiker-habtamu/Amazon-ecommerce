@@ -79,7 +79,7 @@ const Payment = () => {
             <h3>Delivery Address</h3>
           </div>
           <div className="section-data">
-            <p className="user-email">{user.email}</p>
+            <p className="user-email">{user?.email}</p>
             <p>123 React Lane</p>
             <p>Chicago, IL</p>
           </div>

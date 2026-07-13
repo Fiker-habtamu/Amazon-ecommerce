@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../../Utility/fireBase";
 import {
   signInWithEmailAndPassword,
@@ -18,6 +18,8 @@ const Auth = () => {
   const [{ user }, dispatch] = useContext(DataContext);
 
   const navigate = useNavigate();
+  const navigateData = useLocation()
+  console.log(navigateData)
 
   // Handle User Login
   const handleSignIn = (e) => {
@@ -32,7 +34,7 @@ const Auth = () => {
           type: Type.SET_USER,
           user: userCredential.user,
         });
-        navigate("/"); // Redirect to home page on success
+        navigate(navigateData?.state?.redirect || '/'); // Redirect to home page on success
       })
       .catch((err) => {
         setLoading(false);
@@ -75,7 +77,7 @@ const Auth = () => {
       {/* Main Auth Form Box */}
       <div className="login-box">
         <h1>Sign-in</h1>
-
+        {navigateData?.state?.msg && <p className="login-error-msg"> {navigateData?.state?.msg}</p>}
         {error && <p className="login-error-msg">{error}</p>}
 
         <form>

@@ -9,11 +9,12 @@ import EachCategory from "./EachCategory/EachCategory";
 import ProductDetail from "./ProductDetail/ProductDetail";
 
 // Make sure it looks exactly like this line:
-import { Elements } from "@stripe/react-stripe-js"; 
+import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import ProtectedRouter from "../components/ProtectedRouter";
 
 const stripePromise = loadStripe(
-  "pk_test_51Q3gIHDl8SpKXVAJDELtDDexChfqgtA2zGk01zU9mdNj6NyCZW3Go1TNeL8kfQJjD7oGtaJCaUGzRfCIkMKVFw0H000EpaKidD"
+  "pk_test_51Q3gIHDl8SpKXVAJDELtDDexChfqgtA2zGk01zU9mdNj6NyCZW3Go1TNeL8kfQJjD7oGtaJCaUGzRfCIkMKVFw0H000EpaKidD",
 );
 
 function Router() {
@@ -21,17 +22,30 @@ function Router() {
     <Routes>
       <Route path="/" element={<Landing />} />
       <Route path="/auth" element={<Auth />} />
-      
-      <Route 
-        path="/payments" 
+      <Route
+        path="/payments"
         element={
-          <Elements stripe={stripePromise}>
-            <Payment />
-          </Elements>
-        } 
+          <ProtectedRouter
+            msg={"you must login to process payment"}
+            redirect={"/payments"}
+          >
+            <Elements stripe={stripePromise}>
+              <Payment />
+            </Elements>
+          </ProtectedRouter>
+        }
       />
-      
-      <Route path="/orders" element={<Orders />} />
+      <Route
+        path="/orders"
+        element={
+          <ProtectedRouter
+            msg="you must login to access your orders"
+            redirect={"/orders"}
+          >
+            <Orders />
+          </ProtectedRouter>
+        }
+      />
       <Route path="/category/:categoryName" element={<EachCategory />} />
       <Route path="/product/:productId" element={<ProductDetail />} />
       <Route path="/cart" element={<Cart />} />
