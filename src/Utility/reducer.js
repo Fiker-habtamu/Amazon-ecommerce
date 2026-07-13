@@ -40,6 +40,10 @@ let reducer = (state, action) => {
       return {
         ...state,basket:newBasket
       }
+    case Type.EMPTY:
+      return{
+        ...state,basket:[]
+      }
     case Type.SET_USER:
       return{
         ...state,user:action.user

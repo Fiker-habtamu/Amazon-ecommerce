@@ -34,7 +34,7 @@ function Orders() {
     <div className="orders-container">
       <div className="orders-inner">
         <h2 className="orders-title">Your Orders</h2>
-		{ordersList?.length === 0 && (<p className="p-[20px]">You don't have orders yet</p>)}
+		{ordersList?.length === 0 && (<p className="p-[20px ]">You don't have orders yet</p>)}
         {ordersList.map((order) => (
           <div key={order.id} className="order-card">
             {/* Displaying the Stripe Payment Intent ID */}

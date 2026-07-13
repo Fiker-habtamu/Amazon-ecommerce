@@ -9,6 +9,7 @@ import { axiosInstant } from "../../Api/axios";
 import { ClipLoader } from "react-spinners";
 import { db } from "../../Utility/fireBase";
 import { collection, doc, setDoc } from "firebase/firestore";
+import { Type } from "../../Utility/action.type";
 
 const Payment = () => {
   const [{ user, basket }, dispatch] = useContext(DataContext);
@@ -43,8 +44,6 @@ const Payment = () => {
           card: elements.getElement(CardElement),
         },
       });
-      setProcessing(false);
-      console.log(paymentIntent);
       // after confirmation ---> order firebase database save, clear basket
       const orderDocRef = doc(
         collection(db, "users", user?.uid, "orders"),
@@ -55,7 +54,11 @@ const Payment = () => {
         amount: paymentIntent.amount,
         created: paymentIntent.created,
       });
-      navigate("/orders",{state:{msg:"you have placed new order"}})
+      dispatch({
+        type: Type.EMPTY
+      })
+      setProcessing(false);
+      navigate("/orders", { state: { msg: "you have placed new order" } });
     } catch (error) {
       setError(error.message);
       setProcessing(false);
