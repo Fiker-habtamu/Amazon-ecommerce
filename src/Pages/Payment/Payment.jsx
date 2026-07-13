@@ -26,6 +26,11 @@ const Payment = () => {
     e.preventDefault();
     setProcessing(true);
     setError(null);
+    try {
+      // 1, backend contact to the client secret
+    } catch (error) {
+      setError(error.message)
+    }
   };
 
   return (
